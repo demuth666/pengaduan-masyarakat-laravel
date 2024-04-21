@@ -66,11 +66,11 @@ class PengaduanResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nik')
+                TextColumn::make('user.nik')
                     ->label('NIK')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('nama')
+                TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('aduan')
