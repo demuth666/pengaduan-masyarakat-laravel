@@ -20,6 +20,10 @@ class Pengaduan extends Model
         'bukti',
     ];
 
+    protected $casts = [
+        'user_id' => 'integer'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
