@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\PengaduanController;
 
 /*
@@ -19,4 +21,18 @@ use App\Http\Controllers\api\PengaduanController;
 //     return $request->user();
 // });
 
-Route::post('create-pengaduan', [PengaduanController::class, 'create']);
+//Auth
+Route::post('sign-up', [AuthController::class, 'signUp']);
+Route::post('sign-in', [AuthController::class, 'signIn']);
+
+Route::group(['middleware' => ['auth:sanctum', 'ability:user']], function () {
+
+    //User
+    Route::get('user', [UserController::class, 'user']);
+
+    //Pengaduan
+    Route::post('create-pengaduan', [PengaduanController::class, 'create']);
+
+    //Auth
+    Route::post('sign-out/{tokenId}', [AuthController::class, 'signOut']);
+});
