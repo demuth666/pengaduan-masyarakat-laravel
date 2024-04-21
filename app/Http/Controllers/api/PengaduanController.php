@@ -12,8 +12,7 @@ class PengaduanController extends Controller
     public function create(Request $request) {
         try {
             $request->validate([
-                'nik' => 'required',
-                'nama' => 'required',
+                'user_id' => 'required',
                 'aduan' => 'required',
                 'bukti' => 'required|mimes:jpeg,png,jpg,mp3,wav,mp4|max:20480',
             ]);
@@ -23,8 +22,7 @@ class PengaduanController extends Controller
             $path = $request->file('bukti')->store('bukti', 'public');
 
             $pengaduan = Pengaduan::create([
-                'nik' => $request->nik,
-                'nama' => $request->nama,
+                'user_id' => $request->user_id,
                 'aduan' => $request->aduan,
                 'tanggal' => $tanggal,
                 'status' => "Belum Ditinjau",
