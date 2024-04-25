@@ -113,10 +113,10 @@ class PengaduanResource extends Resource
             ->actions([
                 Action::make('Detail')
                     ->form([
-                        TextInput::make('nik')
+                        TextInput::make('user.nik')
                             ->label('NIK')
                             ->disabled(),
-                        TextInput::make('nama')
+                        TextInput::make('user.nama')
                             ->label('Nama')
                             ->disabled(),
                         TextArea::make('aduan')

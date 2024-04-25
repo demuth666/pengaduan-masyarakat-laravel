@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -25,6 +26,10 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('nik')
+                    ->label('NIK')
+                    ->required()
+                    ->placeholder('Masukan NIK'),
                 TextInput::make('name')
                     ->label('Nama')
                     ->required()
@@ -52,6 +57,12 @@ class UserResource extends Resource
                     ->required()
                     ->numeric()
                     ->placeholder('Masukan No. WA'),
+                Select::make('Role')
+                    ->options([
+                        'admin' => 'admin',
+                        'user' => 'user',
+                    ])
+
             ]);
     }
 
@@ -65,7 +76,7 @@ class UserResource extends Resource
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable(),
-                TextColumn::make('role.roles')
+                TextColumn::make('role')
                     ->label('Role')
                     ->searchable(),
                 TextColumn::make('no_wa')
